@@ -1,7 +1,14 @@
 <?php
 
-namespace App;
+class PayPalAdapter implements PaymentAdapterInterface {
+    private $payPal;
 
-class PayPalAdapter implements PaymentAdapterInterface
-{
+    public function __construct(PayPal $payPal) {
+        $this->payPal = $payPal;
+    }
+
+    public function collectMoney($amount) {
+        $result = $this->payPal->authorizeTransaction($amount);
+        return $result === "PayPal успешный тест!";
+    }
 }

@@ -1,7 +1,14 @@
 <?php
 
-namespace App;
+class CreditCardAdapter implements PaymentAdapterInterface {
+    private $creditCard;
 
-class CreditCardAdapter implements PaymentAdapterInterface
-{
+    public function __construct(CreditCard $creditCard) {
+        $this->creditCard = $creditCard;
+    }
+
+    public function collectMoney($amount) {
+        $result = $this->creditCard->transfer($amount);
+        return strpos($result, "Код:") !== false;
+    }
 }

@@ -1,8 +1,5 @@
 <?php
 
-namespace App;
-
-interface PaymentAdapterInterface
-{
-    public function collectMoney($amount): bool;
+interface PaymentAdapterInterface {
+    public function collectMoney($amount);
 }
